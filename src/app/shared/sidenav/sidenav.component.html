@@ -1,0 +1,37 @@
+<mat-sidenav-container class="bg-gray-900 min-h-screen z-10 text-slate-300 w-64 left-0 h-screen overflow-y-scroll">
+  <mat-sidenav
+    mode="side"
+    opened
+    class="bg-gray-900 min-h-screen text-slate-300 w-72 h-screen overflow-y-auto"
+  >
+    <!-- Banner -->
+    <div class="my-6 px-6 flex items-center justify-center">
+      <img src="assets/images/isucorp.png" class="h-14 w-auto" />
+    </div>
+    <!-- Profile -->
+    <div class="px-6 py-8 flex flex-col items-center">
+      <p class="text-slate-500 mb-2">I'm Isaac</p>
+      <a href="#" class="flex flex-col items-center space-y-2">
+        <img
+          class="rounded-full w-24 h-24"
+          src="assets/images/icuarezma.jpg"
+          alt="User profile"
+        />
+        <!-- <span class="text-sm md:text-base font-bold">Edward Tompson</span> -->
+      </a>
+    </div>
+
+    <!-- Items -->
+     <mat-nav-list>
+        @for(item of menuItems; track $index){
+            <mat-list-item [routerLink]="item.path" routerLinkActive="bg-blue-800 text-white" class="flex items-center"
+            >
+            <mat-icon matSuffix class="mr-4">{{item.icon}}</mat-icon>
+            <span class="text-lg font-semibold">{{item.label}}</span>
+                <!-- <p>{{item.label}}</p> -->
+                
+            </mat-list-item>
+        }
+     </mat-nav-list>
+  </mat-sidenav>
+</mat-sidenav-container>

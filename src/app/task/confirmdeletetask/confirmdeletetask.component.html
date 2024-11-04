@@ -1,0 +1,9 @@
+<h2 mat-dialog-title>Confirm Delete</h2>
+<mat-dialog-content>
+  <p>Are you sure you want to delete the task "{{ data.taskName }}"?</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <span style="margin-right: 8px;"></span>
+  <button mat-button (click)="onYesClick()">Confirm</button>
+</mat-dialog-actions>

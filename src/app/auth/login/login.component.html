@@ -1,0 +1,40 @@
+<div class="flex h-screen">
+  <div
+    class="w-1/2 flex items-center justify-center"
+    style="background-color: #00adef"
+  >
+    <mat-card class="p-8 w-3/4">
+      <h2 class="text-2xl font-bold mb-6">Sign In</h2>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-4">
+        <mat-form-field class="w-full" appearance="fill">
+          <mat-label>Username</mat-label>
+          <input matInput formControlName="username" required/>
+          <mat-icon matSuffix>person</mat-icon>
+          <mat-error>Username is required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-full" appearance="fill">
+          <mat-label>Password</mat-label>
+          <input matInput [type]="hide() ? 'password' : 'text'" formControlName="password"/>
+          <button type="button" mat-icon-button matSuffix (click)="clickEvent($event)">
+            <mat-icon>{{ hide() ? "visibility" : "visibility_off" }}</mat-icon>
+          </button>
+          <mat-error>Password is required</mat-error>
+        </mat-form-field>
+
+        <button mat-flat-button style="background-color: #00adef; color: white;" class="w-full">
+          <span>Sign In</span>
+        </button>
+      </form>
+    </mat-card>
+  </div>
+
+  <div class="w-1/2 flex items-center justify-center bg-white-600 text-white">
+    <div class="text-center p-8">
+      <img src="assets/images/isucorp.png" alt="ISU Corp Demo" />
+      <p class="text-lg text-gray-400">
+        This is an application developed by icuarezma
+      </p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,107 @@
+<div class="absolute inset-0 flex flex-col min-w-0 overflow-y-auto"
+CdkScrollable
+>
+  <div class="flex flex-col flex-auto w-full">
+    <div class="flex flex-wrap w-full max-w-screen-xl mx-auto p-6 md:p-8">
+      <!-- Title -->
+      <div class="flex items-center justify-between w-full">
+        <div>
+          <div class="text-lg font-semibold">Tasks</div>
+          <div class="text-lg font-semibold">Tasks Component</div>
+        </div>
+        <button mat-flat-button [color]="'primary'" class="text-lg text-white"
+        (click)="openAddTaskDialog()">
+          New Task
+        </button>
+      </div>
+
+      <!-- Filter Tasks -->
+
+      <div class="w-full">
+        <mat-form-field appearance="fill" class="w-full">
+          <mat-label>Tasks filter, Write here what you want to search</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Search by word">
+        </mat-form-field>
+      </div>
+
+      <!-- Tasks List / Table -->
+      <div class="w-full">
+        <table 
+            mat-table 
+            [dataSource]="dataSource"
+            matSort
+            >
+
+            <ng-container matColumnDef="taskId">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="px-4 py-2 font-semibold">
+                    Task ID
+                </th>
+                <td mat-cell *matCellDef="let task" class="px-4 py-2">{{task.taskId}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="title">
+                <th mat-header-cell *matHeaderCellDef class="text-center px-4 py-2 font-semibold">
+                    Title
+                </th>
+                <td mat-cell *matCellDef="let task" class="px-4 py-2">{{task.title}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="description">
+                <th mat-header-cell *matHeaderCellDef class="text-center px-4 py-2 font-semibold">
+                    Description
+                </th>
+                <td mat-cell *matCellDef="let task" class="px-4 py-2">{{task.description}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="dueDate">
+                <th mat-header-cell *matHeaderCellDef class="px-4 py-2 font-semibold">
+                    Due Date
+                </th>
+                <td mat-cell *matCellDef="let task" class="px-4 py-2">{{task.dueDate}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="isCompleted">
+                <th mat-header-cell *matHeaderCellDef class="px-4 py-2 font-semibold">
+                    Is Completed
+                </th>
+                <td mat-cell *matCellDef="let task" class="px-4 py-2">
+                    @if(task.isCompleted){
+                        <mat-icon class="text-lg text-green-500">check_circle</mat-icon>
+                    }
+                    @else {
+                        <mat-icon class="text-lg text-red-500">cancel</mat-icon>
+                    }
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef class="px-4 py-2 font-semibold">
+                    Actions
+                </th>
+                <td mat-cell *matCellDef="let task" class="px-4 py-2 flex gap-2">
+                    <button mat-icon-button class="text-blue-600" (click)="openViewTaskDialog(task)">
+                        <mat-icon>visibility</mat-icon>
+                    </button>
+                    <button mat-icon-button class="text-green-600" (click)="openEditTaskDialog(task)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button class="text-red-600" (click)="confirmDeleteTask(task)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        </table>
+        <mat-paginator
+            [pageSizeOptions]="[10,10,20]"
+            showFirstLastButtons
+        >
+        </mat-paginator>
+      </div>
+
+    </div>
+  </div>
+</div>
