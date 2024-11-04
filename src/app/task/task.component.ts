@@ -104,6 +104,9 @@ export class TaskComponent implements OnInit, AfterViewInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.editTask({ ...task, ...result });
+        this.fillTasks();
+        this.dataSource.sort = this.sort;
+        this.dataSource.sort.sort({ id: 'taskId', start: 'desc', disableClear: false });
       }
     });
   }
